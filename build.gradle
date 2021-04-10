@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.nodueck'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	//Cassandra
+	implementation 'com.datastax.oss:java-driver-core:4.11.0'
+	implementation 'com.datastax.oss:java-driver-query-builder:4.11.0'
+	implementation 'com.datastax.oss:java-driver-mapper-runtime:4.11.0'
+	annotationProcessor 'com.datastax.oss:java-driver-mapper-processor:4.11.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
