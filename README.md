@@ -13,7 +13,7 @@
 
 `use cassandra_test;`
 
-`create table cassandra_test_entity ( id bigint, timestamp timestamp, some_text text, PRIMARY KEY((id),timestamp)) WITH CLUSTERING ORDER BY (timestamp DESC) AND dclocal_read_repair_chance=0.000000 AND gc_grace_seconds=864000 AND read_repair_chance=0.100000 AND  compaction={'sstable_size_in_mb': '160', 'class': 'LeveledCompactionStrategy'} AND compression={'sstable_compression': 'SnappyCompressor'}`
+`create table cassandra_test_entity ( id bigint, timestamp timestamp, some_text text, PRIMARY KEY((id),timestamp)) WITH CLUSTERING ORDER BY (timestamp DESC) AND dclocal_read_repair_chance=0.000000 AND gc_grace_seconds=864000 AND read_repair_chance=0.100000 AND  compaction={'sstable_size_in_mb': '160', 'class': 'LeveledCompactionStrategy'} AND compression={'sstable_compression': 'SnappyCompressor'};`
 
 ## Run Test
 `gradlew build`

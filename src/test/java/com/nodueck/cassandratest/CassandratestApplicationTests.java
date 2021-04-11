@@ -15,6 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class CassandratestApplicationTests {
 
+
+	private static final int TEST_SIZE = 10_000;
+
 	@Test
 	void testSaveAndLoadData() throws Exception {
 		CqlSession session = CqlSession.builder().withConfigLoader(DriverConfigLoader.fromClasspath("cassandra.conf")).build();
@@ -23,7 +26,7 @@ class CassandratestApplicationTests {
 		CassandraTestDao dao = mapper.cassandraTestDao();
 
 
-		for(int i = 0; i < 1000_000; i++){
+		for(int i = 0; i < TEST_SIZE; i++){
 			CassandraTestEntity entity = buildCassandraTestEntity(i);
 			dao.save(entity).exceptionally(throwable -> {
 				System.out.println(throwable); 
@@ -33,7 +36,7 @@ class CassandratestApplicationTests {
 
 		TimeUnit.SECONDS.sleep(5L);
 
-		assertEquals(1000_000, dao.all().all().size());
+		assertEquals(TEST_SIZE, dao.all().all().size());
 
 	}
 
